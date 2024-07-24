@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+}
+
+a {
+  display: block;
+}
+
+nav {
+  width: 500px;
+  margin: 0 auto;
+
+  ul {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+}
