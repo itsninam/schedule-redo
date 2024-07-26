@@ -2,14 +2,15 @@ import "./App.scss";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import data from "./data/festivals.json";
+import homeRoutes from "./routes/homeRoutes";
+import getScheduleRoutes from "./routes/scheduleRoutes";
 
 import Home from "./components/Home";
 import PageNotFound from "./components/PageNotFound";
 import Navigation from "./components/Navigation";
-import SchedulePage from "./components/SchedulePage";
 import MySchedule from "./components/MySchedule";
-import ScheduleNav from "./components/ScheduleNav";
 import DaySchedule from "./components/DaySchedule";
+import getFestivalRoutes from "./routes/festivalRoutes";
 
 function App() {
   const [festivals, setFestivals] = useState([]);
@@ -30,21 +31,23 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation />
+      <Navigation routes={homeRoutes} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
           path="schedule"
-          element={<SchedulePage festivalDays={festivalDays} />}
+          element={<Navigation routes={getScheduleRoutes(festivalDays)} />}
         >
-          <Route element={<ScheduleNav festivalDays={festivalDays} />}>
+          <Route
+            element={<Navigation routes={getFestivalRoutes(festivalDays)} />}
+          >
             <Route index element={<Navigate to={festivalDays[0]} replace />} />
             <Route
               path=":festival"
               element={<DaySchedule festivals={festivals} />}
             />
-            ;
           </Route>
+
           <Route path="my-schedule" element={<MySchedule />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />

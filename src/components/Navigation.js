@@ -1,14 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
-function Navigation() {
+function Navigation({ routes }) {
   return (
-    <nav>
-      <ul>
-        <Link to="/">Home</Link>
-        <Link to="/schedule">Schedule</Link>
-      </ul>
-    </nav>
+    <>
+      <nav>
+        <ul>
+          {routes.map((route, index) => {
+            return (
+              <li key={index}>
+                <NavLink to={route.routeLink}>{route.routeName}</NavLink>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+      <Outlet />
+    </>
   );
 }
 
