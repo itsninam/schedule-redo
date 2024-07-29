@@ -2,7 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 function DaySchedule({ festivals }) {
-  const { festival } = useParams();
+  const { day } = useParams();
+
 
   return (
     <div>
@@ -10,8 +11,7 @@ function DaySchedule({ festivals }) {
         fest.artists
           .filter(
             (artist) =>
-              new Date(artist.startTime).toISOString().split("T")[0] ===
-              festival
+              new Date(artist.startTime).toISOString().split("T")[0] === day
           )
           .map((item, index) => {
             return <p key={index}>{item.name}</p>;

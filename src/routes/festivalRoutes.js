@@ -5,7 +5,7 @@ const getFestivalRoutes = (festivalDays) => {
     routeName: `${dayOfWeek[new Date(day).getDay()]}/${
       new Date(day).getDate() + 1
     }`,
-    routeLink: day,
+    routeLink: `/schedule/list/${day}`,
   }));
 
   return festivalRoutes;

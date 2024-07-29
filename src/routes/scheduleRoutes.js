@@ -1,16 +1,12 @@
-const getScheduleRoutes = (festivalDays) => {
-  const scheduleRoutes = [
-    {
-      routeName: "Schedule",
-      routeLink: festivalDays[0],
-    },
-    {
-      routeName: "My Schedule",
-      routeLink: "my-schedule",
-    },
-  ];
+const scheduleRoutes = [
+  {
+    routeName: "Schedule",
+    routeLink: "list",
+  },
+  {
+    routeName: "My Schedule",
+    routeLink: "my-list",
+  },
+];
 
-  return scheduleRoutes;
-};
-
-export default getScheduleRoutes;
+export default scheduleRoutes;
