@@ -48,12 +48,14 @@ function FestivalsProvider({ children }) {
     fetchData();
   }, []);
 
+  const formatDate = (date) => {
+    return new Date(date).toISOString().split("T")[0];
+  };
+
   const festivalDates = [
     ...new Set(
       festivals.flatMap((festival) =>
-        festival.artists.map(
-          (artist) => new Date(artist.startTime).toISOString().split("T")[0]
-        )
+        festival.artists.map((artist) => formatDate(artist.startTime))
       )
     ),
   ];
@@ -64,6 +66,7 @@ function FestivalsProvider({ children }) {
         isLoading,
         festivals,
         festivalDates,
+        formatDate,
       }}
     >
       {children}
