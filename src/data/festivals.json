@@ -4,34 +4,46 @@
       "festivalName": "Electric Forest",
       "artists": [
         {
+          "name": "Artist 52",
+          "location": "Tripolee",
+          "startTime": "2024-07-24T18:30:00Z",
+          "endTime": "2024-07-24T20:00:00Z",
+          "id": 99
+        },
+        {
           "name": "Artist 1",
           "location": "Conference Room 1",
           "startTime": "2024-07-23T13:00:00Z",
-          "endTime": "2024-07-23T15:00:00Z"
+          "endTime": "2024-07-23T15:00:00Z",
+          "id": 100
         },
         {
           "name": "Artist 2",
           "location": "Tripolee",
           "startTime": "2024-07-23T14:30:00Z",
-          "endTime": "2024-07-23T15:30:00Z"
+          "endTime": "2024-07-23T15:30:00Z",
+          "id": 101
         },
         {
           "name": "Artist 3",
           "location": "Tripolee",
           "startTime": "2024-07-24T15:30:00Z",
-          "endTime": "2024-07-24T17:30:00Z"
+          "endTime": "2024-07-24T17:30:00Z",
+          "id": 102
         },
         {
           "name": "Artist 4",
           "location": "Tripolee",
           "startTime": "2024-07-24T15:30:00Z",
-          "endTime": "2024-07-24T13:30:00Z"
+          "endTime": "2024-07-24T13:30:00Z",
+          "id": 103
         },
         {
           "name": "Artist 5",
           "location": "Tripolee",
           "startTime": "2024-07-24T18:30:00Z",
-          "endTime": "2024-07-24T20:00:00Z"
+          "endTime": "2024-07-24T20:00:00Z",
+          "id": 104
         }
       ]
     }

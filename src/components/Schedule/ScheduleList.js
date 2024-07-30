@@ -5,19 +5,27 @@ import getFestivalRoutes from "../../routes/festivalRoutes";
 import { useFestivals } from "../../contexts/FestivalsContext";
 
 function ScheduleList() {
-  const { festivalDates, isLoading } = useFestivals();
+  const { festivalDates, isMyScheduleRoute, isLoading } = useFestivals();
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
   if (festivalDates.length === 0) {
-    return <p>No schedule available</p>;
+    return (
+      <p>
+        {isMyScheduleRoute
+          ? "Add artists to your schedule"
+          : "No schedule available"}
+      </p>
+    );
   }
 
   return (
     <section>
-      <Navigation routes={getFestivalRoutes(festivalDates)} />
+      <Navigation
+        routes={getFestivalRoutes(festivalDates, isMyScheduleRoute)}
+      />
 
       <Outlet />
     </section>

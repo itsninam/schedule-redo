@@ -1,5 +1,8 @@
 import { createContext, useReducer, useEffect, useContext } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
+import getSortedDates from "../components/helpers/getSortedDates";
+import formatDate from "../components/helpers/formatDate";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -16,6 +19,18 @@ function reducer(state, action) {
         isLoading: false,
       };
     }
+    case "add_to_myschedule": {
+      const elementExists = state.mySchedule.some(
+        (schedule) => schedule.id === action.payload.id
+      );
+
+      return {
+        ...state,
+        mySchedule: elementExists
+          ? state.mySchedule
+          : [...state.mySchedule, action.payload],
+      };
+    }
 
     default:
       return "Unrecognized command";
@@ -25,6 +40,7 @@ function reducer(state, action) {
 const initialState = {
   festivals: [],
   isLoading: true,
+  mySchedule: [],
 };
 
 const FestivalsContext = createContext();
@@ -32,7 +48,8 @@ const BASE_URL = "http://localhost:9000/festivals";
 
 function FestivalsProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { isLoading, festivals } = state;
+  const location = useLocation();
+  const { isLoading, festivals, mySchedule } = state;
 
   const fetchData = async () => {
     try {
@@ -48,17 +65,19 @@ function FestivalsProvider({ children }) {
     fetchData();
   }, []);
 
-  const formatDate = (date) => {
-    return new Date(date).toISOString().split("T")[0];
-  };
+  const isMyScheduleRoute = location.pathname.includes("my-list");
 
-  const festivalDates = [
+  const dates = [
     ...new Set(
-      festivals.flatMap((festival) =>
-        festival.artists.map((artist) => formatDate(artist.startTime))
-      )
+      isMyScheduleRoute
+        ? mySchedule.map((artist) => formatDate(artist.startTime))
+        : festivals.flatMap((festival) =>
+            festival.artists.map((artist) => formatDate(artist.startTime))
+          )
     ),
   ];
+
+  const festivalDates = getSortedDates(dates);
 
   return (
     <FestivalsContext.Provider
@@ -67,6 +86,9 @@ function FestivalsProvider({ children }) {
         festivals,
         festivalDates,
         formatDate,
+        mySchedule,
+        dispatch,
+        isMyScheduleRoute,
       }}
     >
       {children}
