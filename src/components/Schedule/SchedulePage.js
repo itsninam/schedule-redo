@@ -5,11 +5,11 @@ import scheduleRoutes from "../../routes/scheduleRoutes";
 
 function SchedulePage() {
   return (
-    <div>
+    <section>
       <Navigation routes={scheduleRoutes} />
 
       <Outlet />
-    </div>
+    </section>
   );
 }
 

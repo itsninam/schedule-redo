@@ -1,7 +1,7 @@
 const dayOfWeek = ["sun", "mon", "tue", "wed", "thur", "fri", "sat"];
 
-const getFestivalRoutes = (festivalDays) => {
-  const festivalRoutes = festivalDays.map((day) => ({
+const getFestivalRoutes = (festivalDates) => {
+  const festivalRoutes = festivalDates.map((day) => ({
     routeName: `${dayOfWeek[new Date(day).getDay()]}/${
       new Date(day).getDate() + 1
     }`,

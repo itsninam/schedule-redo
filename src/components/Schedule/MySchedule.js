@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function MySchedule() {
-  return (
-    <div>MySchedule</div>
-  )
+  return <section>MySchedule</section>;
 }
 
-export default MySchedule
+export default MySchedule;

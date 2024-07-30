@@ -1,7 +1,7 @@
 import React from "react";
 
 function MyScheduleList() {
-  return <div>MyList</div>;
+  return <section>MyList</section>;
 }
 
 export default MyScheduleList;
