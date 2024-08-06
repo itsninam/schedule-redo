@@ -1,12 +1,14 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
 import Navigation from "../Navigation";
-import scheduleRoutes from "../../routes/scheduleRoutes";
+import getScheduleRoutes from "../../routes/scheduleRoutes";
+import { useFestivals } from "../../contexts/FestivalsContext";
 
 function SchedulePage() {
+  const { festivalRoute } = useFestivals();
+
   return (
     <section>
-      <Navigation routes={scheduleRoutes} />
+      <Navigation routes={getScheduleRoutes(festivalRoute)} />
 
       <Outlet />
     </section>

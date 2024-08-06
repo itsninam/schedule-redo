@@ -6,12 +6,12 @@ import Artists from "../Artists";
 function DaySchedule() {
   const { day } = useParams();
 
-  const { festivals, formatDate, dispatch, mySchedule, isMyScheduleRoute } =
+  const { formatDate, dispatch, mySchedule, isMyScheduleRoute, currentFest } =
     useFestivals();
 
   const filteredSchedule = isMyScheduleRoute
     ? mySchedule.filter((artist) => formatDate(artist.startTime) === day)
-    : festivals.flatMap((fest) =>
+    : currentFest.flatMap((fest) =>
         fest.artists.filter((artist) => formatDate(artist.startTime) === day)
       );
 

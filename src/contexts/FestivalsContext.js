@@ -1,8 +1,8 @@
 import { createContext, useReducer, useEffect, useContext } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import getSortedDates from "../components/helpers/getSortedDates";
-import formatDate from "../components/helpers/formatDate";
+import getSortedDates from "../helpers/getSortedDates";
+import formatDate from "../helpers/formatDate";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -31,6 +31,12 @@ function reducer(state, action) {
           : [...state.mySchedule, action.payload],
       };
     }
+    case "get_current_fest": {
+      return {
+        ...state,
+        currentFest: JSON.parse(localStorage.getItem("currentFestival")) || "",
+      };
+    }
 
     default:
       return "Unrecognized command";
@@ -41,6 +47,7 @@ const initialState = {
   festivals: [],
   isLoading: true,
   mySchedule: [],
+  currentFest: JSON.parse(localStorage.getItem("currentFestival")) || [],
 };
 
 const FestivalsContext = createContext();
@@ -49,7 +56,7 @@ const BASE_URL = "http://localhost:9000/festivals";
 function FestivalsProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const location = useLocation();
-  const { isLoading, festivals, mySchedule } = state;
+  const { isLoading, festivals, mySchedule, currentFest } = state;
 
   const fetchData = async () => {
     try {
@@ -71,13 +78,15 @@ function FestivalsProvider({ children }) {
     ...new Set(
       isMyScheduleRoute
         ? mySchedule.map((artist) => formatDate(artist.startTime))
-        : festivals.flatMap((festival) =>
+        : currentFest.flatMap((festival) =>
             festival.artists.map((artist) => formatDate(artist.startTime))
           )
     ),
   ];
 
   const festivalDates = getSortedDates(dates);
+
+  const festivalRoute = currentFest[0].festivalName;
 
   return (
     <FestivalsContext.Provider
@@ -89,6 +98,8 @@ function FestivalsProvider({ children }) {
         mySchedule,
         dispatch,
         isMyScheduleRoute,
+        currentFest,
+        festivalRoute,
       }}
     >
       {children}

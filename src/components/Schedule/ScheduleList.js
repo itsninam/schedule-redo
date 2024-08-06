@@ -1,11 +1,11 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
 import Navigation from "../Navigation";
 import getFestivalRoutes from "../../routes/festivalRoutes";
 import { useFestivals } from "../../contexts/FestivalsContext";
 
 function ScheduleList() {
-  const { festivalDates, isMyScheduleRoute, isLoading } = useFestivals();
+  const { festivalDates, isMyScheduleRoute, isLoading, festivalRoute } =
+    useFestivals();
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -24,7 +24,11 @@ function ScheduleList() {
   return (
     <section>
       <Navigation
-        routes={getFestivalRoutes(festivalDates, isMyScheduleRoute)}
+        routes={getFestivalRoutes(
+          festivalDates,
+          isMyScheduleRoute,
+          festivalRoute
+        )}
       />
 
       <Outlet />
