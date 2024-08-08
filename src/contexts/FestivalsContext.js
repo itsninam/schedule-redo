@@ -20,15 +20,39 @@ function reducer(state, action) {
       };
     }
     case "add_to_myschedule": {
-      const elementExists = state.mySchedule.some(
-        (schedule) => schedule.id === action.payload.id
+      const updatedMySchedule = state.mySchedule.map((schedule) => {
+        if (schedule.festivalName === state.currentFest[0].festivalName) {
+          const artistExists = schedule.artists.some(
+            (existingArtist) => existingArtist.id === action.payload.id
+          );
+
+          if (artistExists) {
+            return schedule;
+          }
+
+          return {
+            ...schedule,
+            artists: [...schedule.artists, action.payload],
+          };
+        }
+        return schedule;
+      });
+
+      const festivalExists = state.mySchedule.some(
+        (schedule) =>
+          schedule.festivalName === state.currentFest[0].festivalName
       );
+
+      const newSchedule = {
+        festivalName: state.currentFest[0].festivalName,
+        artists: [action.payload],
+      };
 
       return {
         ...state,
-        mySchedule: elementExists
-          ? state.mySchedule
-          : [...state.mySchedule, action.payload],
+        mySchedule: festivalExists
+          ? updatedMySchedule
+          : [...state.mySchedule, newSchedule],
       };
     }
     case "get_current_fest": {
@@ -74,10 +98,16 @@ function FestivalsProvider({ children }) {
 
   const isMyScheduleRoute = location.pathname.includes("my-list");
 
+  const myCurrentSchedule = mySchedule.filter(
+    (festival) => festival.festivalName === currentFest[0].festivalName
+  );
+
   const dates = [
     ...new Set(
       isMyScheduleRoute
-        ? mySchedule.map((artist) => formatDate(artist.startTime))
+        ? myCurrentSchedule.flatMap((festival) =>
+            festival.artists.map((artist) => formatDate(artist.startTime))
+          )
         : currentFest.flatMap((festival) =>
             festival.artists.map((artist) => formatDate(artist.startTime))
           )
@@ -100,6 +130,7 @@ function FestivalsProvider({ children }) {
         isMyScheduleRoute,
         currentFest,
         festivalRoute,
+        myCurrentSchedule,
       }}
     >
       {children}
