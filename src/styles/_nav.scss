@@ -1,0 +1,59 @@
+// Navigation
+nav {
+  ul {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  a {
+    padding: 16px;
+  }
+
+  a.active {
+    color: var(--accent-font-colour);
+  }
+
+  &.home-nav {
+    height: 24px;
+  }
+
+  &.schedule-nav a.active {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  &.days-nav {
+    margin: 16px 0px;
+
+    a {
+      border-radius: 24px;
+      padding: 4px 16px;
+      position: relative;
+
+      &:not(.active)::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0.3;
+        background-color: var(--accent-colour);
+        border-radius: 24px;
+      }
+
+      &.active {
+        background: var(--accent-colour);
+        opacity: 1;
+        color: var(--low-emphasis-font-colour);
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.festival-list li {
+  margin: 16px 0px;
+  cursor: pointer;
+}

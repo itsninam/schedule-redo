@@ -26,17 +26,19 @@ function Home() {
   }, [dispatch, location.pathname]);
 
   return (
-    <section>
-      {festivals.map((festival) => {
-        return (
-          <p
-            key={festival.festivalName}
-            onClick={() => setCurrentFestival(festival)}
-          >
-            {festival.festivalName}
-          </p>
-        );
-      })}
+    <section className="main-section">
+      <ul className="festival-list">
+        {festivals.map((festival) => {
+          return (
+            <li
+              key={festival.festivalName}
+              onClick={() => setCurrentFestival(festival)}
+            >
+              {festival.festivalName}
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 }

@@ -7,8 +7,11 @@ function SchedulePage() {
   const { festivalRoute } = useFestivals();
 
   return (
-    <section>
-      <Navigation routes={getScheduleRoutes(festivalRoute)} />
+    <section className="main-section">
+      <Navigation
+        className="schedule-nav"
+        routes={getScheduleRoutes(festivalRoute)}
+      />
 
       <Outlet />
     </section>

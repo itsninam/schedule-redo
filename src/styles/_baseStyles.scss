@@ -1,0 +1,44 @@
+// Base styles
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 1.6rem;
+}
+
+p,
+ul,
+li {
+  margin: 0px;
+  padding: 0px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  display: block;
+  color: var(--high-emphasis-font-colour);
+}
+
+body {
+  background-color: var(--background-colour);
+}
+
+.wrapper {
+  width: 414px;
+  margin: 24px auto 24px auto;
+  border: 1px solid black;
+  border-radius: 8px;
+  height: calc(100vh - 48px);
+  background-color: white;
+}
+
+.main-section {
+  height: calc(100% - 122px);
+  padding: 16px;
+}

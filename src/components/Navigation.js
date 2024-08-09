@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function Navigation({ routes }) {
+function Navigation({ routes, className }) {
   return (
     <>
-      <nav>
+      <nav className={className}>
         <ul>
           {routes.map((route, index) => {
             return (

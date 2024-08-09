@@ -24,6 +24,7 @@ function ScheduleList() {
   return (
     <section>
       <Navigation
+        className="days-nav"
         routes={getFestivalRoutes(
           festivalDates,
           isMyScheduleRoute,

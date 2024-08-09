@@ -40,7 +40,7 @@ function App() {
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-      <Navigation routes={homeRoutes} />
+      <Navigation className="home-nav" routes={homeRoutes} />
     </div>
   );
 }
