@@ -10,7 +10,7 @@ function DaySchedule() {
     formatDate,
     dispatch,
     isMyScheduleRoute,
-    currentFest,
+    currentFestival,
     myCurrentSchedule,
   } = useFestivals();
 
@@ -18,7 +18,7 @@ function DaySchedule() {
     ? myCurrentSchedule.flatMap((fest) =>
         fest.artists.filter((artist) => formatDate(artist.startTime) === day)
       )
-    : currentFest.flatMap((fest) =>
+    : currentFestival.flatMap((fest) =>
         fest.artists.filter((artist) => formatDate(artist.startTime) === day)
       );
 
@@ -39,7 +39,7 @@ function DaySchedule() {
       {scheduleTimes.map((time) => {
         return (
           <Fragment key={time}>
-            <li>{time}</li>
+            <li className="schedule-time">{time}</li>
 
             <Artists
               filteredSchedule={filteredSchedule}

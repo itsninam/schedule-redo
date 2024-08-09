@@ -9,12 +9,15 @@ import Navigation from "./components/Navigation";
 import SchedulePage from "./components/Schedule/SchedulePage";
 import DaySchedule from "./components/Schedule/DaySchedule";
 import ScheduleList from "./components/Schedule/ScheduleList";
+import Header from "./components/Header";
 
 function App() {
   const { festivalDates, isMyScheduleRoute, festivalRoute } = useFestivals();
 
   return (
-    <div className="App">
+    <div className="wrapper">
+      <Header />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="schedule" element={<SchedulePage />}>

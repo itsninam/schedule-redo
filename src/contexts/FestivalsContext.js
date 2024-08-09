@@ -21,13 +21,15 @@ function reducer(state, action) {
     }
     case "add_to_myschedule": {
       const updatedMySchedule = state.mySchedule.map((schedule) => {
-        if (schedule.festivalName === state.currentFest[0].festivalName) {
+        if (schedule.festivalName === state.currentFestival[0].festivalName) {
           const artistExists = schedule.artists.some(
             (existingArtist) => existingArtist.id === action.payload.id
           );
 
           if (artistExists) {
-            return schedule;
+            return schedule.artists.filter(
+              (artist) => artist.id !== action.payload.id
+            );
           }
 
           return {
@@ -40,11 +42,11 @@ function reducer(state, action) {
 
       const festivalExists = state.mySchedule.some(
         (schedule) =>
-          schedule.festivalName === state.currentFest[0].festivalName
+          schedule.festivalName === state.currentFestival[0].festivalName
       );
 
       const newSchedule = {
-        festivalName: state.currentFest[0].festivalName,
+        festivalName: state.currentFestival[0].festivalName,
         artists: [action.payload],
       };
 
@@ -58,7 +60,15 @@ function reducer(state, action) {
     case "get_current_fest": {
       return {
         ...state,
-        currentFest: JSON.parse(localStorage.getItem("currentFestival")) || "",
+        currentFestival:
+          JSON.parse(localStorage.getItem("currentFestival")) || [],
+      };
+    }
+
+    case "reset_current_fest": {
+      return {
+        ...state,
+        currentFestival: [],
       };
     }
 
@@ -71,7 +81,7 @@ const initialState = {
   festivals: [],
   isLoading: true,
   mySchedule: [],
-  currentFest: JSON.parse(localStorage.getItem("currentFestival")) || [],
+  currentFestival: JSON.parse(localStorage.getItem("currentFestival")) || [],
 };
 
 const FestivalsContext = createContext();
@@ -80,7 +90,7 @@ const BASE_URL = "http://localhost:9000/festivals";
 function FestivalsProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const location = useLocation();
-  const { isLoading, festivals, mySchedule, currentFest } = state;
+  const { isLoading, festivals, mySchedule, currentFestival } = state;
 
   const fetchData = async () => {
     try {
@@ -99,7 +109,7 @@ function FestivalsProvider({ children }) {
   const isMyScheduleRoute = location.pathname.includes("my-list");
 
   const myCurrentSchedule = mySchedule.filter(
-    (festival) => festival.festivalName === currentFest[0].festivalName
+    (festival) => festival.festivalName === currentFestival[0]?.festivalName
   );
 
   const dates = [
@@ -108,7 +118,7 @@ function FestivalsProvider({ children }) {
         ? myCurrentSchedule.flatMap((festival) =>
             festival.artists.map((artist) => formatDate(artist.startTime))
           )
-        : currentFest.flatMap((festival) =>
+        : currentFestival.flatMap((festival) =>
             festival.artists.map((artist) => formatDate(artist.startTime))
           )
     ),
@@ -116,7 +126,7 @@ function FestivalsProvider({ children }) {
 
   const festivalDates = getSortedDates(dates);
 
-  const festivalRoute = currentFest[0].festivalName;
+  const festivalRoute = currentFestival[0]?.festivalName;
 
   return (
     <FestivalsContext.Provider
@@ -128,7 +138,7 @@ function FestivalsProvider({ children }) {
         mySchedule,
         dispatch,
         isMyScheduleRoute,
-        currentFest,
+        currentFestival,
         festivalRoute,
         myCurrentSchedule,
       }}

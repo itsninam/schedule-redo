@@ -1,30 +1,47 @@
-.App {
-  text-align: center;
+:root {
+  --primary-colour: linear-gradient(to bottom right, #8387f1 0%, #c584e0 74%);
+  /* --primary-colour: linear-gradient(to bottom right, #666beb 0%, #d288f1 74%); */
+  /* --primary-colour: linear-gradient(to bottom right, #9094f8 0%, #d288f1 74%); */
+  /* --accent-colour: #fcc297; */
+  --high-emphasis-font-colour: #212529;
+  --accent-font-colour: #612a91;
+  --low-emphasis-font-colour: #fff;
+  --background-colour: #212529;
+  --border-colour: #dee2e6;
+  --accent-colour: #c584e0;
 }
 
-a {
-  display: block;
-  color: black;
-  text-decoration: none;
-}
-
-a.active {
-  color: green;
-  text-decoration: underline;
-}
-
-ul {
+// Base styles
+li {
   list-style: none;
 }
 
-nav {
-  width: 500px;
-  margin: 0 auto;
+a {
+  text-decoration: none;
+}
 
-  ul {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    align-items: center;
-  }
+body {
+  background-color: var(--background-colour);
+}
+
+.wrapper {
+  width: 414px;
+  margin: 24px auto 24px auto;
+  border: 1px solid black;
+  border-radius: 8px;
+  height: calc(100vh - 48px);
+  background-color: white;
+}
+
+h1 {
+  background: var(--primary-colour);
+  height: 40px;
+  margin: 0px;
+  padding: 16px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.schedule-time {
+  border: 1px solid black;
 }
