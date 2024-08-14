@@ -1,8 +1,8 @@
 function Artists({ filteredSchedule, time, handleAddToSchedule }) {
   return (
-    <ul>
+    <li>
       {filteredSchedule
-        .filter((schedule) => new Date(schedule.startTime).getHours() === time)
+        .filter((schedule) => schedule.startTime === time)
         .map((artist) => {
           return (
             <li key={artist.id} onClick={() => handleAddToSchedule(artist)}>
@@ -10,7 +10,7 @@ function Artists({ filteredSchedule, time, handleAddToSchedule }) {
             </li>
           );
         })}
-    </ul>
+    </li>
   );
 }
 

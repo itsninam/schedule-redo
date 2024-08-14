@@ -23,11 +23,7 @@ function DaySchedule() {
       );
 
   const scheduleTimes = [
-    ...new Set(
-      filteredSchedule.flatMap((festival) =>
-        new Date(festival.startTime).getHours()
-      )
-    ),
+    ...new Set(filteredSchedule.flatMap((festival) => festival.startTime)),
   ];
 
   const handleAddToSchedule = (artist) => {
@@ -39,7 +35,13 @@ function DaySchedule() {
       {scheduleTimes.map((time) => {
         return (
           <Fragment key={time}>
-            <li className="schedule-time">{time}</li>
+            <li className="schedule-time">
+              {new Date(time).toLocaleString("en-US", {
+                hour: "numeric",
+                minute: "numeric",
+                hour12: true,
+              })}
+            </li>
 
             <Artists
               filteredSchedule={filteredSchedule}
