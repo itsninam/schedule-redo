@@ -2,17 +2,13 @@ import React, { Fragment } from "react";
 import { useParams } from "react-router-dom";
 import { useFestivals } from "../../contexts/FestivalsContext";
 import Artists from "../Artists";
+import axios from "axios";
 
 function DaySchedule() {
   const { day } = useParams();
 
-  const {
-    formatDate,
-    dispatch,
-    isMyScheduleRoute,
-    currentFestival,
-    myCurrentSchedule,
-  } = useFestivals();
+  const { formatDate, isMyScheduleRoute, currentFestival, myCurrentSchedule } =
+    useFestivals();
 
   const filteredSchedule = isMyScheduleRoute
     ? myCurrentSchedule.flatMap((fest) =>
@@ -26,8 +22,19 @@ function DaySchedule() {
     ...new Set(filteredSchedule.flatMap((festival) => festival.startTime)),
   ];
 
-  const handleAddToSchedule = (artist) => {
-    dispatch({ type: "add_to_myschedule", payload: artist });
+  const handleAddToSchedule = async (artist) => {
+    try {
+      await axios.post("http://localhost:8000/addSchedule", {
+        festivalName: currentFestival[0].festivalName,
+        artist: artist,
+      });
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        alert(error.response.data.message);
+      } else {
+        console.error(error);
+      }
+    }
   };
 
   return (

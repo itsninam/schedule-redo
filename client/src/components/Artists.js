@@ -5,9 +5,9 @@ function Artists({ filteredSchedule, time, handleAddToSchedule }) {
         .filter((schedule) => schedule.startTime === time)
         .map((artist) => {
           return (
-            <li key={artist.id} onClick={() => handleAddToSchedule(artist)}>
+            <p key={artist.id} onClick={() => handleAddToSchedule(artist)}>
               {artist.name}
-            </li>
+            </p>
           );
         })}
     </li>

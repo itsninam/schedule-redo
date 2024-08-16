@@ -25,6 +25,10 @@ function Home() {
     }
   }, [dispatch, location.pathname]);
 
+  if (festivals.length === 0) {
+    return <p>No festivals available</p>;
+  }
+
   return (
     <section className="main-section">
       <ul className="festival-list">

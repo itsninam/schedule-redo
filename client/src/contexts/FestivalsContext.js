@@ -1,4 +1,10 @@
-import { createContext, useReducer, useEffect, useContext } from "react";
+import {
+  createContext,
+  useReducer,
+  useEffect,
+  useContext,
+  useCallback,
+} from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import getSortedDates from "../helpers/getSortedDates";
@@ -20,41 +26,10 @@ function reducer(state, action) {
       };
     }
     case "add_to_myschedule": {
-      const updatedMySchedule = state.mySchedule.map((schedule) => {
-        if (schedule.festivalName === state.currentFestival[0].festivalName) {
-          const artistExists = schedule.artists.some(
-            (existingArtist) => existingArtist.id === action.payload.id
-          );
-
-          if (artistExists) {
-            return schedule.artists.filter(
-              (artist) => artist.id !== action.payload.id
-            );
-          }
-
-          return {
-            ...schedule,
-            artists: [...schedule.artists, action.payload],
-          };
-        }
-        return schedule;
-      });
-
-      const festivalExists = state.mySchedule.some(
-        (schedule) =>
-          schedule.festivalName === state.currentFestival[0].festivalName
-      );
-
-      const newSchedule = {
-        festivalName: state.currentFestival[0].festivalName,
-        artists: [action.payload],
-      };
-
       return {
         ...state,
-        mySchedule: festivalExists
-          ? updatedMySchedule
-          : [...state.mySchedule, newSchedule],
+        mySchedule: action.payload,
+        isLoading: false,
       };
     }
     case "get_current_fest": {
@@ -102,8 +77,14 @@ function FestivalsProvider({ children }) {
     }
   };
 
-  useEffect(() => {
-    fetchData();
+  const fetchSchedule = useCallback(async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/getSchedule");
+
+      dispatch({ type: "add_to_myschedule", payload: response.data });
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   const isMyScheduleRoute = location.pathname.includes("my-list");
@@ -127,6 +108,14 @@ function FestivalsProvider({ children }) {
   const festivalDates = getSortedDates(dates);
 
   const festivalRoute = currentFestival[0]?.festivalName;
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    fetchSchedule();
+  }, [isMyScheduleRoute, fetchSchedule]);
 
   return (
     <FestivalsContext.Provider
