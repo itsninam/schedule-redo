@@ -4,15 +4,22 @@ const addSchedule = async (req, res) => {
   try {
     const { festivalName, artist } = req.body;
 
-    let festivalExists = await ScheduleModel.findOne({ festivalName });
+    let schedule = await ScheduleModel.findOne({ festivalName });
 
-    if (festivalExists) {
+    if (schedule) {
+      console.log("schedule");
       const artistExists = schedule.artists.some(
         (existingArtist) => existingArtist.id == artist.id
       );
 
       if (!artistExists) {
+        console.log("exist");
         schedule.artists.push(artist);
+      } else {
+        console.log("remove");
+        schedule.artists = schedule.artists.filter(
+          (existingArtist) => existingArtist.id != artist.id
+        );
       }
     } else {
       schedule = new ScheduleModel({

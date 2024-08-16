@@ -130,6 +130,7 @@ function FestivalsProvider({ children }) {
         currentFestival,
         festivalRoute,
         myCurrentSchedule,
+        fetchSchedule,
       }}
     >
       {children}

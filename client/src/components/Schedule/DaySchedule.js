@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useFestivals } from "../../contexts/FestivalsContext";
 import Artists from "../Artists";
@@ -7,8 +7,13 @@ import axios from "axios";
 function DaySchedule() {
   const { day } = useParams();
 
-  const { formatDate, isMyScheduleRoute, currentFestival, myCurrentSchedule } =
-    useFestivals();
+  const {
+    formatDate,
+    isMyScheduleRoute,
+    currentFestival,
+    myCurrentSchedule,
+    fetchSchedule,
+  } = useFestivals();
 
   const filteredSchedule = isMyScheduleRoute
     ? myCurrentSchedule.flatMap((fest) =>
@@ -28,6 +33,7 @@ function DaySchedule() {
         festivalName: currentFestival[0].festivalName,
         artist: artist,
       });
+      fetchSchedule();
     } catch (error) {
       if (error.response && error.response.status === 400) {
         alert(error.response.data.message);
