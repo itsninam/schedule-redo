@@ -3,24 +3,32 @@ import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
 import { MdOutlineCheckBox } from "react-icons/md";
 
 function Artists({ filteredSchedule, time, handleAddToSchedule }) {
-  const { mySchedule } = useFestivals();
+  const { mySchedule, festivalRoute } = useFestivals();
+
+  const currentSchedule = mySchedule.find(
+    (schedule) => schedule.festivalName === festivalRoute
+  );
 
   return (
-    <li>
+    <li className="artist-list">
       {filteredSchedule
         .filter((schedule) => schedule.startTime === time)
         .map((artist) => {
           return (
-            <p key={artist.id} onClick={() => handleAddToSchedule(artist)}>
-              {artist.name}
-              {mySchedule[0]?.artists.some(
+            <div
+              className="artist"
+              onClick={() => handleAddToSchedule(artist)}
+              key={artist.id}
+            >
+              <p>{artist.name}</p>
+              {currentSchedule?.artists.some(
                 (art) => art.name === artist.name
               ) ? (
-                <MdOutlineCheckBox />
+                <MdOutlineCheckBox className="icon" />
               ) : (
-                <MdOutlineCheckBoxOutlineBlank />
+                <MdOutlineCheckBoxOutlineBlank className="icon" />
               )}
-            </p>
+            </div>
           );
         })}
     </li>
