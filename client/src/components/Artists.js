@@ -1,13 +1,18 @@
+import { useEffect } from "react";
 import { useFestivals } from "../contexts/FestivalsContext";
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
 import { MdOutlineCheckBox } from "react-icons/md";
 
 function Artists({ filteredSchedule, time, handleAddToSchedule }) {
-  const { mySchedule, festivalRoute } = useFestivals();
+  const { mySchedule, festivalRoute, fetchSchedule } = useFestivals();
 
   const currentSchedule = mySchedule.find(
     (schedule) => schedule.festivalName === festivalRoute
   );
+
+  useEffect(() => {
+    fetchSchedule();
+  }, [handleAddToSchedule, fetchSchedule]);
 
   return (
     <li className="artist-list">
