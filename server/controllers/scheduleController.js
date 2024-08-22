@@ -6,6 +6,10 @@ const addSchedule = async (req, res) => {
 
     let schedule = await ScheduleModel.findOne({ festivalName });
 
+    if (!schedule) {
+      return res.status(404).json({ message: "Schedule not found" });
+    }
+
     if (schedule) {
       const artistExists = schedule.artists.some(
         (existingArtist) => existingArtist.id == artist.id
