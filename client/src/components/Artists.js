@@ -18,7 +18,8 @@ function Artists({
 
   useEffect(() => {
     fetchSchedule();
-  }, [handleAddToSchedule, fetchSchedule]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [handleAddToSchedule]); 
 
   return (
     <li className="artist-list">
