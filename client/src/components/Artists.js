@@ -3,8 +3,14 @@ import { useFestivals } from "../contexts/FestivalsContext";
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
 import { MdOutlineCheckBox } from "react-icons/md";
 
-function Artists({ filteredSchedule, time, handleAddToSchedule }) {
-  const { mySchedule, festivalRoute, fetchSchedule } = useFestivals();
+function Artists({
+  filteredSchedule,
+  time,
+  handleAddToSchedule,
+  handleRemoveFromSchedule,
+}) {
+  const { mySchedule, festivalRoute, fetchSchedule, isMyScheduleRoute } =
+    useFestivals();
 
   const currentSchedule = mySchedule.find(
     (schedule) => schedule.festivalName === festivalRoute
@@ -22,7 +28,11 @@ function Artists({ filteredSchedule, time, handleAddToSchedule }) {
           return (
             <div
               className="artist"
-              onClick={() => handleAddToSchedule(artist)}
+              onClick={() =>
+                isMyScheduleRoute
+                  ? handleRemoveFromSchedule(artist)
+                  : handleAddToSchedule(artist)
+              }
               key={artist.id}
             >
               <p>{artist.name}</p>

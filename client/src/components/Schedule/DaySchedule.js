@@ -37,6 +37,60 @@ function DaySchedule() {
     }
   };
 
+  const handleRemoveFromSchedule = async (artist) => {
+    try {
+      axios
+        .delete("http://localhost:8000/removeArtist", {
+          data: {
+            festivalName: currentFestival[0].festivalName,
+            artist: artist,
+          },
+        })
+        .then((response) => {
+          console.log(response.data.message);
+        })
+        .catch((error) => {
+          console.error("Error deleting event:", error);
+        });
+    } catch (err) {
+      console.error("Error in delete request:", err);
+    }
+  };
+
+  // const deleteMyEvent = async (req, res) => {
+  //   try {
+  //     const { festivalName, timeSlotId } = req.params;
+
+  //     const festival = await MyScheduleModel.findOne({
+  //       festivalName: festivalName,
+  //     });
+
+  //     if (!festival) {
+  //       return res.status(404).json({ message: "Festival not found" });
+  //     }
+
+  //     const dayIndex = festival.festivalData.findIndex((day) =>
+  //       day.timeSlot.find((slot) => slot._id.toString() === timeSlotId)
+  //     );
+
+  //     if (dayIndex === -1) {
+  //       return res.status(404).json({ message: "Time slot not found" });
+  //     }
+
+  //     const updatedTimeSlots = festival.festivalData[dayIndex].timeSlot.filter(
+  //       (slot) => slot._id.toString() !== timeSlotId
+  //     );
+
+  //     festival.festivalData[dayIndex].timeSlot = updatedTimeSlots;
+  //     await festival.save();
+
+  //     res.json({ message: "Time slot deleted successfully" });
+  //   } catch (error) {
+  //     console.error("Error deleting time slot:", error);
+  //     res.status(500).json({ message: "Internal error" });
+  //   }
+  // };
+
   return (
     <ul>
       {scheduleTimes.map((time) => {
@@ -54,6 +108,7 @@ function DaySchedule() {
               filteredSchedule={filteredSchedule}
               time={time}
               handleAddToSchedule={handleAddToSchedule}
+              handleRemoveFromSchedule={handleRemoveFromSchedule}
             />
           </Fragment>
         );

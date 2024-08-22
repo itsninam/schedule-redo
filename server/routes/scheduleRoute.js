@@ -4,6 +4,7 @@ const cors = require("cors");
 const {
   addSchedule,
   getSchedule,
+  removeArtist,
 } = require("../controllers/scheduleController");
 
 // middleware
@@ -16,5 +17,6 @@ router.use(
 
 router.post("/addSchedule", addSchedule);
 router.get("/getSchedule", getSchedule);
+router.delete("/removeArtist", removeArtist);
 
 module.exports = router;

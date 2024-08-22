@@ -47,7 +47,32 @@ const getSchedule = async (req, res) => {
   }
 };
 
+const removeArtist = async (req, res) => {
+  try {
+    const { festivalName, artist } = req.body;
+
+    let schedule = await ScheduleModel.findOne({ festivalName });
+
+    if (!schedule) {
+      return res.status(404).json({ message: "Schedule not found" });
+    }
+
+    if (schedule) {
+      schedule.artists = schedule.artists.filter(
+        (existingArtist) => existingArtist.id != artist.id
+      );
+    }
+
+    res.status(200).json({ message: "Artist removed successfully" });
+    await schedule.save();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 module.exports = {
   addSchedule,
   getSchedule,
+  removeArtist,
 };
