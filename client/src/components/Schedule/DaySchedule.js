@@ -7,8 +7,13 @@ import axios from "axios";
 function DaySchedule() {
   const { day } = useParams();
 
-  const { formatDate, isMyScheduleRoute, currentFestival, myCurrentSchedule } =
-    useFestivals();
+  const {
+    formatDate,
+    isMyScheduleRoute,
+    currentFestival,
+    myCurrentSchedule,
+    fetchSchedule,
+  } = useFestivals();
 
   const filteredSchedule = isMyScheduleRoute
     ? myCurrentSchedule.flatMap((fest) =>
@@ -28,6 +33,8 @@ function DaySchedule() {
         festivalName: currentFestival[0].festivalName,
         artist: artist,
       });
+
+      await fetchSchedule();
     } catch (error) {
       if (error.response && error.response.status === 400) {
         alert(error.response.data.message);
@@ -39,21 +46,20 @@ function DaySchedule() {
 
   const handleRemoveFromSchedule = async (artist) => {
     try {
-      axios
-        .delete("http://localhost:8000/removeArtist", {
-          data: {
-            festivalName: currentFestival[0].festivalName,
-            artist: artist,
-          },
-        })
-        .then((response) => {
-          console.log(response.data.message);
-        })
-        .catch((error) => {
-          console.error("Error deleting event:", error);
-        });
-    } catch (err) {
-      console.error("Error in delete request:", err);
+      await axios.delete("http://localhost:8000/removeArtist", {
+        data: {
+          festivalName: currentFestival[0].festivalName,
+          artist: artist,
+        },
+      });
+
+      await fetchSchedule();
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        console.error("Error deleting event:", error.response.data.message);
+      } else {
+        console.error("Error in delete request:", error);
+      }
     }
   };
 

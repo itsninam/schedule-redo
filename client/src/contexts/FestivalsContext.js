@@ -115,7 +115,7 @@ function FestivalsProvider({ children }) {
 
   useEffect(() => {
     fetchSchedule();
-  }, [isMyScheduleRoute, fetchSchedule]);
+  }, [fetchSchedule]);
 
   return (
     <FestivalsContext.Provider

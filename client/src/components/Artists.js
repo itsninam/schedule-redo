@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useFestivals } from "../contexts/FestivalsContext";
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
 import { MdOutlineCheckBox } from "react-icons/md";
@@ -9,17 +8,11 @@ function Artists({
   handleAddToSchedule,
   handleRemoveFromSchedule,
 }) {
-  const { mySchedule, festivalRoute, fetchSchedule, isMyScheduleRoute } =
-    useFestivals();
+  const { mySchedule, festivalRoute, isMyScheduleRoute } = useFestivals();
 
   const currentSchedule = mySchedule.find(
     (schedule) => schedule.festivalName === festivalRoute
   );
-
-  useEffect(() => {
-    fetchSchedule();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [handleAddToSchedule]); 
 
   return (
     <li className="artist-list">
