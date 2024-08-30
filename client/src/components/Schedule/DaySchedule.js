@@ -24,7 +24,11 @@ function DaySchedule() {
       );
 
   const scheduleTimes = [
-    ...new Set(filteredSchedule.flatMap((festival) => festival.startTime)),
+    ...new Set(
+      filteredSchedule
+        .flatMap((festival) => festival.startTime)
+        .sort((a, b) => a.localeCompare(b))
+    ),
   ];
 
   const handleAddToSchedule = async (artist) => {
