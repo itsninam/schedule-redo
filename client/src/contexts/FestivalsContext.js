@@ -9,6 +9,7 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import getSortedDates from "../helpers/getSortedDates";
 import formatDate from "../helpers/formatDate";
+import debounce from "lodash/debounce";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -47,6 +48,13 @@ function reducer(state, action) {
       };
     }
 
+    case "loading": {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+
     default:
       return "Unrecognized command";
   }
@@ -68,6 +76,7 @@ function FestivalsProvider({ children }) {
   const { isLoading, festivals, mySchedule, currentFestival } = state;
 
   const fetchData = async () => {
+    dispatch({ type: "loading" });
     try {
       const response = await axios.get(BASE_URL);
       dispatch({ type: "fetch_data", payload: response.data });
@@ -77,15 +86,19 @@ function FestivalsProvider({ children }) {
     }
   };
 
-  const fetchSchedule = useCallback(async () => {
-    try {
-      const response = await axios.get("http://localhost:8000/getSchedule");
+  // eslint-disable-next-line
+  const fetchSchedule = useCallback(
+    debounce(async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/getSchedule");
 
-      dispatch({ type: "add_to_myschedule", payload: response.data });
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+        dispatch({ type: "add_to_myschedule", payload: response.data });
+      } catch (error) {
+        console.log(error);
+      }
+    }, 100),
+    []
+  );
 
   const isMyScheduleRoute = location.pathname.includes("my-list");
 
