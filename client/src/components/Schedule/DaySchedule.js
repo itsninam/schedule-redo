@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { useParams } from "react-router-dom";
+import React, { Fragment, useEffect } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useFestivals } from "../../contexts/FestivalsContext";
 import Artists from "../Artists";
 import axios from "axios";
@@ -13,7 +13,13 @@ function DaySchedule() {
     currentFestival,
     myCurrentSchedule,
     fetchSchedule,
+    festivalRoute,
+    festivalDates,
   } = useFestivals();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const currentPath = location.pathname.split("/").pop();
 
   const filteredSchedule = isMyScheduleRoute
     ? myCurrentSchedule.flatMap((fest) =>
@@ -47,6 +53,16 @@ function DaySchedule() {
       }
     }
   };
+
+  useEffect(() => {
+    if (isMyScheduleRoute) {
+      if (!festivalDates.includes(currentPath)) {
+        navigate(`/schedule/${festivalRoute}/my-list/${festivalDates[0]}`, {
+          replace: true,
+        });
+      }
+    }
+  }, [festivalDates, festivalRoute, isMyScheduleRoute, navigate, currentPath]);
 
   const handleRemoveFromSchedule = async (artist) => {
     try {
