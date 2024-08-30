@@ -2,6 +2,7 @@
   "festivals": [
     {
       "festivalName": "electric-forest",
+      "lineupImage": "electric-forest.jpg",
       "artists": [
         {
           "name": "Artist 52",
@@ -49,6 +50,7 @@
     },
     {
       "festivalName": "veld",
+      "lineupImage": "veld.jpg",
       "artists": [
         {
           "name": "Tiesto",

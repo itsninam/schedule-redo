@@ -10,6 +10,7 @@ import SchedulePage from "./components/Schedule/SchedulePage";
 import DaySchedule from "./components/Schedule/DaySchedule";
 import ScheduleList from "./components/Schedule/ScheduleList";
 import Header from "./components/Header";
+import Lineup from "./components/Lineup";
 
 function App() {
   const { festivalDates, isMyScheduleRoute, festivalRoute } = useFestivals();
@@ -36,6 +37,7 @@ function App() {
             <Route index element={<Navigate to={festivalDates[0]} replace />} />
             <Route path=":day" element={<DaySchedule />} />
           </Route>
+          <Route path={`${festivalRoute}/lineup`} element={<Lineup />} />
         </Route>
 
         <Route path="*" element={<PageNotFound />} />

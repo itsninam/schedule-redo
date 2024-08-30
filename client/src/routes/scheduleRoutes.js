@@ -8,6 +8,10 @@ const getScheduleRoutes = (festivalRoute) => {
       routeName: "My Schedule",
       routeLink: `${festivalRoute}/my-list`,
     },
+    {
+      routeName: "Lineup",
+      routeLink: `${festivalRoute}/lineup`,
+    },
   ];
 
   return scheduleRoutes;
