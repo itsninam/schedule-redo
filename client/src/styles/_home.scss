@@ -1,0 +1,29 @@
+.festival-list {
+  .festival {
+    border: 1px solid var(--border-colour);
+    border-radius: 4px;
+    margin-bottom: 16px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .festival-name {
+      font-weight: 600;
+      color: var(--accent-font-colour);
+    }
+
+    .festival-details {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 8px;
+      font-size: 1.2rem;
+    }
+
+    .festival-logo {
+      height: 56px;
+      width: 56px;
+    }
+  }
+}

@@ -3,6 +3,10 @@
     {
       "festivalName": "electric-forest",
       "lineupImage": "electric-forest.jpg",
+      "logo": "electric-forest-logo.jpg",
+      "location": "Rothbury, MI",
+      "startDate": "2024-06-20T18:30:00.000Z",
+      "endDate": "2024-06-24T18:30:00.000Z",
       "artists": [
         {
           "name": "Artist 52",
@@ -51,6 +55,10 @@
     {
       "festivalName": "veld",
       "lineupImage": "veld.jpg",
+      "logo": "veld-logo.jpg",
+      "location": "Toronto, CA",
+      "startDate": "2024-08-02T18:30:00.000Z",
+      "endDate": "2024-08-04T18:30:00.000Z",
       "artists": [
         {
           "name": "Tiesto",

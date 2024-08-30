@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useFestivals } from "../contexts/FestivalsContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import titleCase from "../helpers/titleCase";
 
 function Home() {
   const { festivals, dispatch } = useFestivals();
@@ -37,8 +38,41 @@ function Home() {
             <li
               key={festival.festivalName}
               onClick={() => setCurrentFestival(festival)}
+              className="festival"
             >
-              {festival.festivalName}
+              <div className="festival-container">
+                <p className="festival-name">
+                  {titleCase(festival.festivalName.replace(/-/g, " "))}
+                </p>
+                <div className="festival-details">
+                  <p>
+                    <span>
+                      {new Date(festival.startDate).toLocaleDateString(
+                        "en-US",
+                        {
+                          month: "short",
+                          day: "numeric",
+                        }
+                      )}{" "}
+                      -{" "}
+                    </span>
+                    <span>
+                      {new Date(festival.endDate).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      })}
+                      ,
+                    </span>
+                  </p>
+                  <p>{festival.location}</p>
+                </div>
+              </div>
+              <img
+                className="festival-logo"
+                src={require(`../assets/${festival.logo}`)}
+                alt={festival.festivalName}
+              />
             </li>
           );
         })}
