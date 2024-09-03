@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navigation from "../Navigation";
 import getFestivalRoutes from "../../routes/festivalRoutes";
 import { useFestivals } from "../../contexts/FestivalsContext";
+import emptyFolder from "../../assets/empty-folder.svg";
 
 function ScheduleList() {
   const { festivalDates, isMyScheduleRoute, isLoading, festivalRoute } =
@@ -13,11 +14,20 @@ function ScheduleList() {
 
   if (festivalDates.length === 0) {
     return (
-      <p>
-        {isMyScheduleRoute
-          ? "Add artists to your schedule"
-          : "No schedule available"}
-      </p>
+      <div className="section-container">
+        {isMyScheduleRoute && (
+          <img
+            className="empty-folder-img"
+            src={emptyFolder}
+            alt="Empty folder image"
+          />
+        )}
+        <p>
+          {isMyScheduleRoute
+            ? "Add artists to your schedule"
+            : "No schedule available"}
+        </p>
+      </div>
     );
   }
 

@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useFestivals } from "../../contexts/FestivalsContext";
 import Artists from "../Artists";
 import axios from "axios";
+import getSortedDates from "../../helpers/getSortedDates";
 
 function DaySchedule() {
   const { day } = useParams();

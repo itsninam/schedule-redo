@@ -1,5 +1,6 @@
 import React from "react";
 import { useFestivals } from "../contexts/FestivalsContext";
+import titleCase from "../helpers/titleCase";
 
 function Header() {
   const { currentFestival } = useFestivals();
@@ -10,7 +11,11 @@ function Header() {
   return (
     <>
       {currentFestival.map((festival) => {
-        return <h1 key={festival.festivalName}>{festival.festivalName}</h1>;
+        return (
+          <h1 key={festival.festivalName}>
+            {titleCase(festival.festivalName.replace(/-/g, " "))}
+          </h1>
+        );
       })}
     </>
   );

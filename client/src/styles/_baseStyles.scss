@@ -41,4 +41,20 @@ body {
 .main-section {
   height: calc(100% - 122px);
   padding: 16px;
+
+  .section-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    font-weight: 600;
+    color: var(--accent-font-colour);
+    flex-direction: column;
+    gap: 24px;
+
+    .empty-folder-img {
+      height: 100px;
+      width: 100px;
+    }
+  }
 }
