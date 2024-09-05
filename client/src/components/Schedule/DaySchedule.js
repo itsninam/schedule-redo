@@ -88,10 +88,11 @@ function DaySchedule() {
   );
 
   return (
-    <ul>
+    <ul className="schedule-container">
       {sortedTimes.map((time) => {
         return (
           <Fragment key={time}>
+            {/* currently not using, may add back later */}
             {/* <li className="schedule-time">
               {new Date(time).toLocaleString("en-US", {
                 timeZone: "UTC",

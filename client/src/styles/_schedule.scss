@@ -1,0 +1,58 @@
+.schedule-container {
+  height: calc(100vh - 298px);
+  overflow: scroll;
+
+  .artist-list {
+    border-bottom: 1px solid var(--border-colour);
+
+    &:first-of-type {
+      border-top: 1px solid var(--border-colour);
+    }
+  }
+
+  .artist {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    cursor: pointer;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid var(--border-colour);
+    }
+
+    .left-container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .artist-image {
+      height: 60px;
+      width: 60px;
+      object-fit: cover;
+    }
+
+    span {
+      font-size: 1.2rem;
+    }
+
+    .pin-icon {
+      vertical-align: middle;
+    }
+  }
+
+  //   currently not using, may add back later
+  //   .schedule-time {
+  //     background-color: var(--background-colour);
+  //     border-top-right-radius: 4px;
+  //     border-top-left-radius: 4px;
+  //     text-align: center;
+  //     padding: 8px;
+  //     color: white;
+
+  //     &:not(:first-of-type) {
+  //       margin-top: 16px;
+  //     }
+  //   }
+}

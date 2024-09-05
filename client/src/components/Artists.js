@@ -1,6 +1,7 @@
 import { useFestivals } from "../contexts/FestivalsContext";
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
 import { MdOutlineCheckBox } from "react-icons/md";
+import { PiMapPinBold } from "react-icons/pi";
 
 function Artists({
   filteredSchedule,
@@ -38,7 +39,9 @@ function Artists({
 
                 <div className="info-container">
                   <p>{artist.name}</p>
-                  <span>{artist.location} </span>
+                  <span>
+                    <PiMapPinBold className="pin-icon" /> {artist.location}{" "}
+                  </span>
                   <span>
                     {new Date(artist.startTime).toLocaleString("en-US", {
                       timeZone: "UTC",

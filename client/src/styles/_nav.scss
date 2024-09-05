@@ -14,10 +14,6 @@ nav {
     color: var(--accent-font-colour);
   }
 
-  &.home-nav {
-    height: 24px;
-  }
-
   &.schedule-nav a.active {
     text-decoration: underline;
     text-underline-offset: 4px;
