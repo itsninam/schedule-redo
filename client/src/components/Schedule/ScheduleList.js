@@ -19,7 +19,7 @@ function ScheduleList() {
           <img
             className="empty-folder-img"
             src={emptyFolder}
-            alt="Empty folder image"
+            alt="Empty folder"
           />
         )}
         <p>

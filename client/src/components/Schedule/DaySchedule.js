@@ -3,7 +3,6 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useFestivals } from "../../contexts/FestivalsContext";
 import Artists from "../Artists";
 import axios from "axios";
-import getSortedDates from "../../helpers/getSortedDates";
 
 function DaySchedule() {
   const { day } = useParams();
@@ -84,18 +83,23 @@ function DaySchedule() {
     }
   };
 
+  const sortedTimes = scheduleTimes.sort(
+    (a, b) => new Date(a).getTime() - new Date(b).getTime()
+  );
+
   return (
     <ul>
-      {scheduleTimes.map((time) => {
+      {sortedTimes.map((time) => {
         return (
           <Fragment key={time}>
-            <li className="schedule-time">
+            {/* <li className="schedule-time">
               {new Date(time).toLocaleString("en-US", {
+                timeZone: "UTC",
                 hour: "numeric",
                 minute: "numeric",
                 hour12: true,
               })}
-            </li>
+            </li> */}
 
             <Artists
               filteredSchedule={filteredSchedule}

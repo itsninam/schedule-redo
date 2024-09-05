@@ -29,7 +29,33 @@ function Artists({
               }
               key={artist.id}
             >
-              <p>{artist.name}</p>
+              <div className="left-container">
+                <img
+                  className="artist-image"
+                  src={require(`../assets/${artist.image}`)}
+                  alt={artist.name}
+                />
+
+                <div className="info-container">
+                  <p>{artist.name}</p>
+                  <span>{artist.location} </span>
+                  <span>
+                    {new Date(artist.startTime).toLocaleString("en-US", {
+                      timeZone: "UTC",
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                    })}{" "}
+                    -{" "}
+                    {new Date(artist.endTime).toLocaleString("en-US", {
+                      timeZone: "UTC",
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                    })}
+                  </span>
+                </div>
+              </div>
               {currentSchedule?.artists.some(
                 (art) => art.name === artist.name
               ) ? (

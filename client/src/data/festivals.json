@@ -10,6 +10,7 @@
       "artists": [
         {
           "name": "Everything Always",
+          "image": "everything-always.jpg",
           "location": "Ranch",
           "startTime": "2024-06-20T00:00:00Z",
           "endTime": "2024-06-20T01:45:00Z",
@@ -17,6 +18,7 @@
         },
         {
           "name": "Nelly Furtado",
+          "image": "nelly-furtado.jpg",
           "location": "Ranch",
           "startTime": "2024-06-20T21:00:00Z",
           "endTime": "2024-06-20T22:30:00Z",
@@ -24,6 +26,7 @@
         },
         {
           "name": "The Disco Biscuits",
+          "image": "disco-biscuits.jpg",
           "location": "Tripolee",
           "startTime": "2024-06-20T22:00:00Z",
           "endTime": "2024-06-20T23:45:00Z",
@@ -31,6 +34,7 @@
         },
         {
           "name": "Ben Bohmer",
+          "image": "ben-bohmer.jpg",
           "location": "Tripolee",
           "startTime": "2024-06-20T20:00:00Z",
           "endTime": "2024-06-20T21:00:00Z",
@@ -38,6 +42,7 @@
         },
         {
           "name": "Knock2",
+          "image": "knock2.jpg",
           "location": "Sherwood Court",
           "startTime": "2024-06-20T00:30:00Z",
           "endTime": "2024-06-20T02:00:00Z",
@@ -45,6 +50,7 @@
         },
         {
           "name": "MauP",
+          "image": "maup.jpg",
           "location": "Tripolee",
           "startTime": "2024-06-20T19:30:00Z",
           "endTime": "2024-06-20T21:00:00Z",
