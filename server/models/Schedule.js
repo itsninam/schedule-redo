@@ -6,6 +6,7 @@ const scheduleSchema = new Schema({
   artists: [
     {
       name: String,
+      image: String,
       location: String,
       startTime: String,
       endTime: String,
