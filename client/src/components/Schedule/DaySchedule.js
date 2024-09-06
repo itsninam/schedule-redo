@@ -1,8 +1,11 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useFestivals } from "../../contexts/FestivalsContext";
 import Artists from "../Artists";
 import axios from "axios";
+import SearchBar from "../SearchBar";
+import NoData from "../NoData";
+import noData from "../../assets/data-not-found.svg";
 
 function DaySchedule() {
   const { day } = useParams();
@@ -20,6 +23,7 @@ function DaySchedule() {
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname.split("/").pop();
+  const [searchFilter, setSearchFilter] = useState([]);
 
   const filteredSchedule = isMyScheduleRoute
     ? myCurrentSchedule.flatMap((fest) =>
@@ -88,30 +92,46 @@ function DaySchedule() {
   );
 
   return (
-    <ul className="schedule-container">
-      {sortedTimes.map((time) => {
-        return (
-          <Fragment key={time}>
-            {/* currently not using, may add back later */}
-            {/* <li className="schedule-time">
-              {new Date(time).toLocaleString("en-US", {
-                timeZone: "UTC",
-                hour: "numeric",
-                minute: "numeric",
-                hour12: true,
-              })}
-            </li> */}
+    <>
+      {filteredSchedule.length !== 0 && (
+        <SearchBar
+          filteredSchedule={filteredSchedule}
+          day={day}
+          setSearchFilter={setSearchFilter}
+        />
+      )}
 
-            <Artists
-              filteredSchedule={filteredSchedule}
-              time={time}
-              handleAddToSchedule={handleAddToSchedule}
-              handleRemoveFromSchedule={handleRemoveFromSchedule}
-            />
-          </Fragment>
-        );
-      })}
-    </ul>
+      <>
+        {searchFilter.length === 0 ? (
+          <NoData svg={noData} message="No artists found" />
+        ) : (
+          <ul className="schedule-container">
+            {sortedTimes.map((time) => {
+              return (
+                <Fragment key={time}>
+                  {/* currently not using, may add back later */}
+                  {/* <li className="schedule-time">
+                    {new Date(time).toLocaleString("en-US", {
+                      timeZone: "UTC",
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                    })}
+                  </li> */}
+
+                  <Artists
+                    filteredSchedule={searchFilter}
+                    time={time}
+                    handleAddToSchedule={handleAddToSchedule}
+                    handleRemoveFromSchedule={handleRemoveFromSchedule}
+                  />
+                </Fragment>
+              );
+            })}
+          </ul>
+        )}
+      </>
+    </>
   );
 }
 

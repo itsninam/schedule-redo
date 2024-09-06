@@ -1,13 +1,9 @@
 .schedule-container {
-  height: calc(100vh - 298px);
   overflow: scroll;
+  height: calc(100vh - 349px);
 
-  .artist-list {
+  .artist-list:last-child {
     border-bottom: 1px solid var(--border-colour);
-
-    &:first-of-type {
-      border-top: 1px solid var(--border-colour);
-    }
   }
 
   .artist {
@@ -16,10 +12,7 @@
     align-items: center;
     padding: 16px;
     cursor: pointer;
-
-    &:not(:last-of-type) {
-      border-bottom: 1px solid var(--border-colour);
-    }
+    border-top: 1px solid var(--border-colour);
 
     .left-container {
       display: flex;

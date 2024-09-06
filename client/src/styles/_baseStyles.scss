@@ -6,6 +6,7 @@ html {
 body {
   font-family: "Inter", sans-serif;
   font-size: 1.6rem;
+  color: var(--high-emphasis-font-colour);
 }
 
 p,
@@ -46,7 +47,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: inherit;
+    height: calc(100vh - 349px);
     font-weight: 600;
     color: var(--accent-font-colour);
     flex-direction: column;
@@ -67,4 +68,42 @@ img {
 .icon {
   height: 18px;
   width: 18px;
+
+  &.checked {
+    color: var(--accent-colour);
+  }
+}
+
+form {
+  position: relative;
+
+  .search-icon {
+    position: absolute;
+    top: 16px;
+    margin: 0px 8px;
+    left: 0px;
+    color: var(--border-colour);
+  }
+
+  input {
+    margin: 8px 0px;
+    border-radius: 4px;
+    outline: 2px solid var(--border-colour);
+    border: none;
+    padding: 8px;
+    width: 100%;
+    padding-left: 32px;
+
+    &:focus {
+      outline: 2px solid var(--accent-colour);
+    }
+
+    &:focus::placeholder {
+      color: var(--high-emphasis-font-colour);
+    }
+
+    &:focus + .search-icon {
+      color: var(--accent-colour);
+    }
+  }
 }

@@ -1,6 +1,6 @@
 import { useFestivals } from "../contexts/FestivalsContext";
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
-import { MdOutlineCheckBox } from "react-icons/md";
+import { FaSquareCheck } from "react-icons/fa6";
 import { PiMapPinBold } from "react-icons/pi";
 
 function Artists({
@@ -62,7 +62,7 @@ function Artists({
               {currentSchedule?.artists.some(
                 (art) => art.name === artist.name
               ) ? (
-                <MdOutlineCheckBox className="icon" />
+                <FaSquareCheck className="icon checked" />
               ) : (
                 <MdOutlineCheckBoxOutlineBlank className="icon" />
               )}
