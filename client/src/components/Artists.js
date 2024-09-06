@@ -40,7 +40,7 @@ function Artists({
                 <div className="info-container">
                   <p>{artist.name}</p>
                   <span>
-                    <PiMapPinBold className="pin-icon" /> {artist.location}{" "}
+                    <PiMapPinBold className="pin-icon" /> {artist.stage}{" "}
                   </span>
                   <span>
                     {new Date(artist.startTime).toLocaleString("en-US", {

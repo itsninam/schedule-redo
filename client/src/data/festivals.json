@@ -5,13 +5,13 @@
       "lineupImage": "electric-forest.jpg",
       "logo": "electric-forest-logo.jpg",
       "location": "Rothbury, MI",
-      "startDate": "2024-06-20T18:30:00.000Z",
-      "endDate": "2024-06-24T18:30:00.000Z",
+      "startDate": "2024-06-20T18:30:00Z",
+      "endDate": "2024-06-24T18:30:00Z",
       "artists": [
         {
           "name": "Everything Always",
           "image": "everything-always.jpg",
-          "location": "Ranch",
+          "stage": "Ranch",
           "startTime": "2024-06-20T00:00:00Z",
           "endTime": "2024-06-20T01:45:00Z",
           "id": 99
@@ -19,7 +19,7 @@
         {
           "name": "Nelly Furtado",
           "image": "nelly-furtado.jpg",
-          "location": "Ranch",
+          "stage": "Ranch",
           "startTime": "2024-06-20T21:00:00Z",
           "endTime": "2024-06-20T22:30:00Z",
           "id": 100
@@ -27,7 +27,7 @@
         {
           "name": "The Disco Biscuits",
           "image": "disco-biscuits.jpg",
-          "location": "Tripolee",
+          "stage": "Tripolee",
           "startTime": "2024-06-20T22:00:00Z",
           "endTime": "2024-06-20T23:45:00Z",
           "id": 101
@@ -35,7 +35,7 @@
         {
           "name": "Ben Bohmer",
           "image": "ben-bohmer.jpg",
-          "location": "Tripolee",
+          "stage": "Tripolee",
           "startTime": "2024-06-20T20:00:00Z",
           "endTime": "2024-06-20T21:00:00Z",
           "id": 102
@@ -43,7 +43,7 @@
         {
           "name": "Knock2",
           "image": "knock2.jpg",
-          "location": "Sherwood Court",
+          "stage": "Sherwood Court",
           "startTime": "2024-06-20T00:30:00Z",
           "endTime": "2024-06-20T02:00:00Z",
           "id": 103
@@ -51,7 +51,7 @@
         {
           "name": "MauP",
           "image": "maup.jpg",
-          "location": "Tripolee",
+          "stage": "Tripolee",
           "startTime": "2024-06-20T19:30:00Z",
           "endTime": "2024-06-20T21:00:00Z",
           "id": 104
@@ -63,49 +63,55 @@
       "lineupImage": "veld.jpg",
       "logo": "veld-logo.jpg",
       "location": "Toronto, CA",
-      "startDate": "2024-08-02T18:30:00.000Z",
-      "endDate": "2024-08-04T18:30:00.000Z",
+      "startDate": "2024-08-02T18:30:00Z",
+      "endDate": "2024-08-04T18:30:00Z",
       "artists": [
         {
           "name": "Tiesto",
-          "location": "Tripolee",
-          "startTime": "2024-08-06T18:30:00Z",
-          "endTime": "2024-08-06T20:00:00Z",
+          "image": "tiesto.jpg",
+          "stage": "Main Stage",
+          "startTime": "2024-08-02T21:30:00Z",
+          "endTime": "2024-08-02T23:00:00Z",
           "id": 999
         },
         {
-          "name": "Armin",
-          "location": "Conference Room 1",
-          "startTime": "2024-08-23T13:00:00Z",
-          "endTime": "2024-08-23T15:00:00Z",
+          "name": "Armin Van Buuren",
+          "image": "armin.jpg",
+          "stage": "Main Stage",
+          "startTime": "2024-08-02T19:45:00Z",
+          "endTime": "2024-08-02T21:00:00Z",
           "id": 1001
         },
         {
           "name": "Hardwell",
-          "location": "Tripolee",
-          "startTime": "2024-08-23T14:30:00Z",
-          "endTime": "2024-08-23T15:30:00Z",
+          "image": "hardwell.jpg",
+          "stage": "Main Stage",
+          "startTime": "2024-08-04T14:30:00Z",
+          "endTime": "2024-08-04T15:30:00Z",
           "id": 1012
         },
         {
-          "name": "SL",
-          "location": "Tripolee",
-          "startTime": "2024-08-24T15:30:00Z",
-          "endTime": "2024-08-24T17:30:00Z",
+          "name": "Seven Lions",
+          "image": "seven-lions.jpg",
+          "stage": "Bass Stage",
+          "startTime": "2024-08-03T15:30:00Z",
+          "endTime": "2024-08-03T17:30:00Z",
           "id": 1023
         },
         {
           "name": "Kream",
-          "location": "Tripolee",
-          "startTime": "2024-08-24T15:30:00Z",
-          "endTime": "2024-08-24T13:30:00Z",
+          "image": "kream.jpg",
+          "stage": "Sirkus Stage",
+          "startTime": "2024-08-03T13:30:00Z",
+          "endTime": "2024-08-03T15:00:00Z",
           "id": 1034
         },
         {
-          "name": "Artist 5",
-          "location": "Tripolee",
-          "startTime": "2024-08-24T18:30:00Z",
-          "endTime": "2024-08-24T20:00:00Z",
+          "name": "Subtronics",
+          "image": "subtronics.jpg",
+          "stage": "Bass Stage",
+          "startTime": "2024-08-04T18:30:00Z",
+          "endTime": "2024-08-04T20:00:00Z",
           "id": 1045
         }
       ]

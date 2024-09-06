@@ -1,4 +1,4 @@
-const dayOfWeek = ["sun", "mon", "tue", "wed", "thur", "fri", "sat"];
+const dayOfWeek = ["mon", "tue", "wed", "thur", "fri", "sat", "sun"];
 
 const getFestivalRoutes = (festivalDates, isMyScheduleRoute, festivalRoute) => {
   const festivalRoutes = festivalDates.map((day) => ({
