@@ -6,6 +6,7 @@ function SearchBar({ filteredSchedule, day, setSearchFilter }) {
 
   useEffect(() => {
     setSearchFilter(filteredSchedule);
+    setSearchItem("");
     // eslint-disable-next-line
   }, [day]);
 
