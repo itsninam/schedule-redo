@@ -4,13 +4,14 @@ import getFestivalRoutes from "../../routes/festivalRoutes";
 import { useFestivals } from "../../contexts/FestivalsContext";
 import NoData from "../NoData";
 import emptyFolder from "../../assets/empty-folder.svg";
+import Loading from "../Loading";
 
 function ScheduleList() {
   const { festivalDates, isMyScheduleRoute, isLoading, festivalRoute } =
     useFestivals();
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   return (

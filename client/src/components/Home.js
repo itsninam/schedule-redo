@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import titleCase from "../helpers/titleCase";
 import NoData from "./NoData";
 import emptyFolder from "../assets/empty-folder.svg";
+import Loading from "./Loading";
 
 function Home() {
   const { festivals, dispatch, isLoading } = useFestivals();
@@ -29,7 +30,7 @@ function Home() {
   }, [dispatch, location.pathname]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   return (
@@ -66,11 +67,14 @@ function Home() {
                         -{" "}
                       </span>
                       <span>
-                        {new Date(festival.endDate).toLocaleDateString("en-US", {
+                        {new Date(festival.endDate).toLocaleDateString(
+                          "en-US",
+                          {
                             month: "short",
                             day: "numeric",
                             year: "numeric",
-                          })}
+                          }
+                        )}
                         ,
                       </span>
                     </p>
