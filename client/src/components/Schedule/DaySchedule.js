@@ -6,6 +6,7 @@ import axios from "axios";
 import SearchBar from "../SearchBar";
 import NoData from "../NoData";
 import noData from "../../assets/data-not-found.svg";
+import adjustTime from "../../helpers/adjustTime";
 
 function DaySchedule() {
   const { day } = useParams();
@@ -87,8 +88,9 @@ function DaySchedule() {
     }
   };
 
+  // Sort times based on adjusted values
   const sortedTimes = scheduleTimes.sort(
-    (a, b) => new Date(a).getTime() - new Date(b).getTime()
+    (a, b) => adjustTime(a) - adjustTime(b)
   );
 
   return (
